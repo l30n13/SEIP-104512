@@ -1,6 +1,6 @@
-.gradle
-/local.properties
 .idea
 .gitignore
+.gradle
+/local.properties
 .DS_Store
 /build
