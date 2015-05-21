@@ -32,9 +32,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void sendEmail(View view) {
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        /*Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
+        emailIntent.setType("text/plain");*/
     }
 
     @Override
