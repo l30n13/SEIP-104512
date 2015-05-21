@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">S.Information</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="reg">Reg no</string>
+    <string name="save">Save</string>
+    <string name="show">Show</string>
+</resources>
