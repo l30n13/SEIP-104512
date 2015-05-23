@@ -21,10 +21,13 @@
         </activity>
         <activity
             android:name=".Call"
-            android:label="@string/title_activity_call"></activity>
+            android:label="@string/title_activity_call" />
         <activity
             android:name=".SendSMS"
-            android:label="@string/title_activity_send_sms"></activity>
+            android:label="@string/title_activity_send_sms" />
+        <activity
+            android:name=".SendMail"
+            android:label="@string/title_activity_send_mail"></activity>
     </application>
 
 </manifest>

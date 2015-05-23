@@ -7,43 +7,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
-public class MainActivity extends ActionBarActivity {
+public class SendMail extends ActionBarActivity {
 
-    public void goUrl(View view) {
-        String url = "https://www.google.com";
+    public void sendEmail(View view) {
+        EditText to = (EditText) findViewById(R.id.to);
+        EditText subject = (EditText) findViewById(R.id.subject);
+        EditText message = (EditText) findViewById(R.id.message);
 
-        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(i);
+        String mailTo = to.getText().toString();
+        String mailSubject = subject.getText().toString();
+        String mailMessage = message.getText().toString();
 
-    }
-
-    public void call(View view) {
-        Intent call = new Intent(this, Call.class);
-        startActivity(call);
-    }
-
-    public void SMS(View view) {
-        Intent call = new Intent(this, SendSMS.class);
-        startActivity(call);
-    }
-
-    public void mail(View view) {
-        Intent mail = new Intent(this, SendMail.class);
-        startActivity(mail);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:" + mailTo));
+        emailIntent.setType("text/plain");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_send_mail);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_send_mail, menu);
         return true;
     }
 

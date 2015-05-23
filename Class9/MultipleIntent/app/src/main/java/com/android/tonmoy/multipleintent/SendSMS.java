@@ -31,9 +31,7 @@ public class SendSMS extends ActionBarActivity {
             smsManager.sendTextMessage(phoneNo, null, message, null, null);
             Toast.makeText(getApplicationContext(), "SMS sent to " + number, Toast.LENGTH_LONG).show();
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(),
-                    "SMS failed, please try again.",
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "SMS failed, please try again.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
