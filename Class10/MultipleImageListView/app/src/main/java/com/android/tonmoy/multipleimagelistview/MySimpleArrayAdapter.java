@@ -34,7 +34,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 
         if (Integer.parseInt(s) % 2 != 0) {
             imageView.setImageResource(R.drawable.no);
-        }else{
+        } else {
             imageView.setImageResource(R.drawable.ok);
         }
 
