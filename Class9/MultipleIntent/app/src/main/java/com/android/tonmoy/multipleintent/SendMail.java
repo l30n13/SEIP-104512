@@ -21,11 +21,12 @@ public class SendMail extends ActionBarActivity {
         String mailSubject = subject.getText().toString();
         String mailMessage = message.getText().toString();
 
-        Intent intent = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
+        Intent intent = new Intent(Intent.ACTION_SEND); // it's not ACTION_SEND
         intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{mailTo});
         intent.putExtra(Intent.EXTRA_SUBJECT, mailSubject);
         intent.putExtra(Intent.EXTRA_TEXT, mailMessage);
-        intent.setData(Uri.parse("mailto:" + mailTo)); // or just "mailto:" for blank
+        //intent.setData(Uri.parse("mailto:" + mailTo)); // or just "mailto:" for blank
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
         startActivity(intent);
     }
