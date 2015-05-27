@@ -22,7 +22,7 @@ import java.util.Calendar;
 @SuppressWarnings("deprecation")
 public class MainActivity extends ActionBarActivity {
 
-    public static final String MyPREFERENCE = "MyPreference";
+    public static final String MyPREFERENCE = "MyProfile";
     public static final String Name = "nameKey";
     public static final String Birthday = "birthdayKey";
     public static final String Gender = "genderKey";
@@ -32,6 +32,8 @@ public class MainActivity extends ActionBarActivity {
     TextView birthday;
     RadioGroup gender;
     RadioButton genderFinal;
+    RadioButton male;
+    RadioButton female;
 
     private DatePicker datePicker;
     private Calendar calendar;
@@ -45,6 +47,12 @@ public class MainActivity extends ActionBarActivity {
 
         name = (EditText) findViewById(R.id.name);
         birthday = (TextView) findViewById(R.id.birthday);
+        gender = (RadioGroup) findViewById(R.id.gender);
+
+        male = (RadioButton) findViewById(R.id.male);
+        female = (RadioButton) findViewById(R.id.female);
+
+        sharedPreferences = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
 
         dateView = (TextView) findViewById(R.id.birthday);
         calendar = Calendar.getInstance();
@@ -53,13 +61,21 @@ public class MainActivity extends ActionBarActivity {
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month + 1, day);
 
-        sharedPreferences = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
-        if (sharedPreferences.contains(Name)) {
+        retrieveData();
+    }
+
+    public void retrieveData() {
+
+        if (sharedPreferences.contains(Name) && sharedPreferences.contains(Birthday)) {
             name.setText(sharedPreferences.getString(Name, ""));
             birthday.setText(sharedPreferences.getString(Birthday, ""));
-            //name.setText(sharedPreferences.getString(Name,""));
-        }
 
+            if (male.getId() == sharedPreferences.getInt(Gender, 1)) {
+                male.setChecked(true);
+            } else {
+                female.setChecked(true);
+            }
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -91,7 +107,15 @@ public class MainActivity extends ActionBarActivity {
     public void saveAll(View view) {
         int selectedId = gender.getCheckedRadioButtonId();
         genderFinal = (RadioButton) findViewById(selectedId);
-        Toast.makeText(getApplicationContext(), "This is test " + genderFinal.getText(), Toast.LENGTH_SHORT).show();
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(Name, name.getText().toString());
+        editor.putString(Birthday, birthday.getText().toString());
+        editor.putInt(Gender, gender.getCheckedRadioButtonId());
+
+        editor.commit();
+
+        Toast.makeText(getApplicationContext(), "This is test " + selectedId, Toast.LENGTH_SHORT).show();
     }
 
 
