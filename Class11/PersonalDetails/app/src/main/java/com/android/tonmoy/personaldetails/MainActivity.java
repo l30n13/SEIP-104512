@@ -2,6 +2,8 @@ package com.android.tonmoy.personaldetails;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,17 @@ import java.util.Calendar;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends ActionBarActivity {
+
+    public static final String MyPREFERENCE = "MyPreference";
+    public static final String Name = "nameKey";
+    public static final String Birthday = "birthdayKey";
+    public static final String Gender = "genderKey";
+    SharedPreferences sharedPreferences;
+
+    EditText name;
+    TextView birthday;
+    RadioGroup gender;
+    RadioButton genderFinal;
 
     private DatePicker datePicker;
     private Calendar calendar;
@@ -29,12 +43,22 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        name = (EditText) findViewById(R.id.name);
+        birthday = (TextView) findViewById(R.id.birthday);
+
         dateView = (TextView) findViewById(R.id.birthday);
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month + 1, day);
+
+        sharedPreferences = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
+        if (sharedPreferences.contains(Name)) {
+            name.setText(sharedPreferences.getString(Name, ""));
+            birthday.setText(sharedPreferences.getString(Birthday, ""));
+            //name.setText(sharedPreferences.getString(Name,""));
+        }
 
     }
 
@@ -65,21 +89,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void saveAll(View view) {
-        EditText name = (EditText) findViewById(R.id.name);
-        TextView birthday = (TextView) findViewById(R.id.birthday);
-        RadioGroup gender = (RadioGroup) findViewById(R.id.gender);
-        int selectGender = gender.getCheckedRadioButtonId();
-        String g = "";
-        switch (selectGender) {
-            case 0:
-                Toast.makeText(this, "Male", Toast.LENGTH_SHORT).show();
-                break;
-            case 1:
-                Toast.makeText(this, "Female", Toast.LENGTH_SHORT).show();
-                break;
-        }
-
-        Toast.makeText(this, "This is test " + selectGender, Toast.LENGTH_SHORT).show();
+        int selectedId = gender.getCheckedRadioButtonId();
+        genderFinal = (RadioButton) findViewById(selectedId);
+        Toast.makeText(getApplicationContext(), "This is test " + genderFinal.getText(), Toast.LENGTH_SHORT).show();
     }
 
 
