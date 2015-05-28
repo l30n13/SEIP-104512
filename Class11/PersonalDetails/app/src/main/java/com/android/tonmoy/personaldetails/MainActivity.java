@@ -16,7 +16,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 
 @SuppressWarnings("deprecation")
@@ -35,10 +37,8 @@ public class MainActivity extends ActionBarActivity {
     RadioButton male;
     RadioButton female;
 
-    private DatePicker datePicker;
-    private Calendar calendar;
-    private TextView dateView;
-    private int year, month, day;
+    Calendar calendar;
+    DatePickerDialog.OnDateSetListener date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +54,25 @@ public class MainActivity extends ActionBarActivity {
 
         sharedPreferences = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
 
-        dateView = (TextView) findViewById(R.id.birthday);
         calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
-        showDate(year, month + 1, day);
+
+        date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                calendar.set(Calendar.MONTH, monthOfYear);
+                calendar.set(Calendar.YEAR, year);
+                updateLabel();
+            }
+        };
 
         retrieveData();
+    }
+
+    private void updateLabel() {
+        String format = "dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
+        birthday.setText(simpleDateFormat.format(calendar.getTime()));
     }
 
     public void retrieveData() {
@@ -78,30 +89,9 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    @SuppressWarnings("deprecation")
     public void setDate(View view) {
-        showDialog(999);
-        Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == 999) {
-            return new DatePickerDialog(this, myDateListener, year, month, day);
-        }
-        return null;
-    }
-
-    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker arg0, int year, int month, int day) {
-            showDate(year, month + 1, day);
-        }
-    };
-
-    private void showDate(int year, int month, int day) {
-        dateView.setText(new StringBuilder().append(day).append("/").append(month).append("/").append(year));
+        new DatePickerDialog(MainActivity.this, date, calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
     public void saveAll(View view) {
@@ -115,7 +105,7 @@ public class MainActivity extends ActionBarActivity {
 
         editor.commit();
 
-        Toast.makeText(getApplicationContext(), "This is test " + selectedId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "This is test " + selectedId, Toast.LENGTH_SHORT).show();
     }
 
 
