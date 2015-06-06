@@ -18,5 +18,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_update_page">UpdatePage</string>
+    <string name="title_activity_edit_page">EditPage</string>
 
 </resources>
