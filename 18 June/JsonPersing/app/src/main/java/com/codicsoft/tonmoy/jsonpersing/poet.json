@@ -1,0 +1,22 @@
+{
+  "poets": [
+    {
+      "id": "1",
+      "name": "Anil Acharya",
+      "biography": "Anil Acharya is a Bengali poet, essayist and short story writer. In 1966, he founded the Bengali literary quarterly and little magazine"
+    },
+    {
+      "id": "2",
+      "name": "Michael Madhusudan Dutt",
+      "biography": "Michael Madhusudan Dutt, or Michael Madhusudan Dutta (Bengali: ?????? ??????? ???? (About this sound Maikel Modhushud\u00f4n D\u00f4tto (help\u00b7info)); 25 January 1824 \u2013 29 June 1873) was a popular 19th-century Bengali poet and dramatist.[1] He was born in Sagordari (Bengali: ??????????), on the bank of Kopotaksho (Bengali: ????????) River, a village in Keshabpur Upazila, Jessore District, Bengal Presidency, East Bengal (now in Bangladesh). His father was Rajnarayan Dutt, an eminent lawyer, and his mother was Jahnabi Devi. He was a pioneer of Bengali drama.[2] His famous work Meghnad Bodh Kavya (Bengali: ???????? ?????), is a tragic epic. It consists of nine cantos and is exceptional in Bengali literature both in terms of style and content. He also wrote poems about the sorrows and afflictions of love as spoken by women."
+    },
+    {
+      "id": "3",
+      "name": "Shamsur Rahman",
+      "biography": "Poet of ............"
+    }
+  ]
+}
+
+
+//http://nerdcastlebd.com/web_service/banglapoems/index.php/poets/all/format/json

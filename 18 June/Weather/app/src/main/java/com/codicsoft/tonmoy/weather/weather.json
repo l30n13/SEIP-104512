@@ -1,0 +1,44 @@
+{
+  "message": "accurate",
+  "cod": "200",
+  "count": 1,
+  "list": [
+    {
+      "id": 8029780,
+      "name": "",
+      "coord": {
+        "lon": 149.126,
+        "lat": -35.3065
+      },
+      "main": {
+        "temp": -4.38,
+        "temp_min": -4.38,
+        "temp_max": -4.38,
+        "pressure": 952.42,
+        "sea_level": 1041.51,
+        "grnd_level": 952.42,
+        "humidity": 83
+      },
+      "dt": 1434825791,
+      "wind": {
+        "speed": 1.06,
+        "deg": 272
+      },
+      "sys": {"country": "Australia"},
+      "clouds": {"all": 0},
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "Sky is Clear",
+          "icon": "01n"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+
+//http://api.openweathermap.org/data/2.5/find?q=Dhaka&units=metric
